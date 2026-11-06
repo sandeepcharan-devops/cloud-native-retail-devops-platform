@@ -22,14 +22,28 @@ The project is being implemented on AWS EC2 using a five-instance infrastructure
 
 All five instances are deployed within the same AWS VPC, across different subnets and Availability Zones, using separate security groups according to their responsibilities.
 
-EC2 Instances :
+<br><br>
+## **EC2 Instances:**
+<br><br>
 ![AWS EC2 Infrastructure](screenshots/01-aws-infrastructure/instances.png)
 
-VPC architecture:
+<br><br>
+
+## **VPC architecture:**
+<br><br>
 ![AWS VPC](screenshots/01-aws-infrastructure/VPC.png)
 
-Security Groups:
+<br><br>
+
+## **Security Groups:**
+<br><br>
 ![AWS Security_Groups](screenshots/01-aws-infrastructure/Security_Groups.png)
+
+<br><br>
+
+## **K3s Cluster:**
+<br><br>
+![Three Node K3s Cluster](screenshots/02-kubernetes/three-node-cluster.png)
 
 
 
