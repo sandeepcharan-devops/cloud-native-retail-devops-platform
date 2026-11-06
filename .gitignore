@@ -1,0 +1,23 @@
+# Secrets and environment configuration
+.env
+.env.*
+!.env.example
+application/.env
+application/**/.env
+
+# Node.js
+node_modules/
+**/node_modules/
+npm-debug.log*
+
+# Build/test output
+coverage/
+dist/
+build/
+*.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

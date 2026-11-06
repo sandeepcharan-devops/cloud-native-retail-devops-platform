@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10251f">
+  <meta name="description" content="Northstar Market — a cloud-native retail storefront demo.">
+  <title>Northstar Market | Retail Order Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="announcement">A DEMO RETAIL EXPERIENCE · BUILT FOR A CLOUD-NATIVE DEVOPS PROJECT</div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Northstar Market home">
+      <span class="brand-mark">✳</span>
+      <span>NORTHSTAR<span class="brand-light"> MARKET</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#shop">Shop</a>
+      <a href="#orders">Your orders</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="cart-link" href="#cart">Your bag <span id="cart-count" class="cart-count">0</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> THOUGHTFUL GOODS, EVERYDAY</p>
+        <h1>Good things<br><em>move you forward.</em></h1>
+        <p class="hero-description">A considered collection for your desk, your home and everywhere in between. Browse the collection and place a demo order.</p>
+        <a class="primary-link" href="#shop">Explore the collection <span>↗</span></a>
+      </div>
+      <div class="hero-art" aria-label="Illustration of everyday products" role="img">
+        <div class="hero-orbit orbit-one"></div>
+        <div class="hero-orbit orbit-two"></div>
+        <div class="hero-sun"></div>
+        <div class="hero-product product-headphones">🎧</div>
+        <div class="hero-product product-lamp">💡</div>
+        <div class="hero-product product-bottle">🥤</div>
+        <div class="hero-stamp">MADE FOR<br>EVERY DAY</div>
+        <span class="hero-art-caption">THE EVERYDAY EDIT · VOL. 01</span>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Store features">
+      <span>✳ Curated essentials</span><span>✳ Simple checkout</span><span>✳ Order tracking demo</span><span>✳ Built on cloud-native services</span>
+    </section>
+
+    <section class="shop-section section-wrap" id="shop">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE NORTHSTAR COLLECTION</p>
+          <h2>Find your next <em>favourite.</em></h2>
+        </div>
+        <p class="section-note">A small collection of useful things, selected with care.</p>
+      </div>
+      <div id="catalog-message" class="message" role="status" aria-live="polite">Loading the collection…</div>
+      <div id="product-grid" class="product-grid"></div>
+    </section>
+
+    <section class="commerce-section section-wrap" id="cart">
+      <div class="section-heading compact-heading">
+        <div><p class="eyebrow">READY WHEN YOU ARE</p><h2>Your <em>bag.</em></h2></div>
+        <p class="section-note">Orders are saved to the platform database.</p>
+      </div>
+      <div class="commerce-grid">
+        <div class="cart-panel panel">
+          <div class="panel-title"><h3>Selected items</h3><span id="cart-summary-count">0 items</span></div>
+          <div id="cart-items" class="cart-items"><p class="empty-state">Your bag is waiting for something good.</p></div>
+          <div class="cart-total"><span>Order total</span><strong id="cart-total">₹0.00</strong></div>
+        </div>
+        <form id="checkout-form" class="checkout-panel panel">
+          <p class="eyebrow">CHECKOUT</p>
+          <h3>Where should we<br>send your order?</h3>
+          <label for="customer-name">Your name</label>
+          <input id="customer-name" name="customerName" type="text" minlength="2" maxlength="100" placeholder="Enter your name" autocomplete="name" required>
+          <button id="place-order" class="button-primary full-button" type="submit" disabled>Place demo order <span>→</span></button>
+          <p class="fine-print">Demo checkout only. No real payment is collected.</p>
+          <div id="checkout-message" class="message" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="orders-section section-wrap" id="orders">
+      <div class="section-heading compact-heading">
+        <div><p class="eyebrow">A LITTLE HISTORY</p><h2>Recent <em>orders.</em></h2></div>
+        <button id="refresh-orders" class="text-button" type="button">Refresh orders ↻</button>
+      </div>
+      <div id="orders-list" class="orders-list"><p class="empty-state">Your recent orders will appear here.</p></div>
+    </section>
+
+    <section class="about-band" id="about">
+      <div class="about-inner">
+        <span class="about-star">✳</span>
+        <div><p class="eyebrow">A PROJECT WITH PURPOSE</p><h2>Small steps.<br><em>Thoughtful systems.</em></h2></div>
+        <p>This storefront is the first working slice of a cloud-native Retail Order Management Platform. Its catalog, order API and database are separate services, ready to be containerized, automated and deployed.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#top"><span class="brand-mark">✳</span><span>NORTHSTAR<span class="brand-light"> MARKET</span></span></a>
+    <span>DEMO APPLICATION · CLOUD-NATIVE RETAIL DEVOPS PLATFORM</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+</body>
+</html>

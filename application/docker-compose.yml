@@ -1,0 +1,88 @@
+name: retail-order-platform
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-retaildb}
+      POSTGRES_USER: ${POSTGRES_USER:-retailapp}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in application/.env}
+    volumes:
+      - retail-postgres-data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d:ro
+    networks:
+      - retail-backend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-retailapp} -d ${POSTGRES_DB:-retaildb}"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    restart: unless-stopped
+
+  catalog-service:
+    build:
+      context: ./services/catalog-service
+    environment:
+      PORT: 3001
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${POSTGRES_DB:-retaildb}
+      DB_USER: ${POSTGRES_USER:-retailapp}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in application/.env}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - retail-backend
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  order-service:
+    build:
+      context: ./services/order-service
+    environment:
+      PORT: 3002
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${POSTGRES_DB:-retaildb}
+      DB_USER: ${POSTGRES_USER:-retailapp}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in application/.env}
+      CATALOG_SERVICE_URL: http://catalog-service:3001
+    depends_on:
+      db:
+        condition: service_healthy
+      catalog-service:
+        condition: service_healthy
+    networks:
+      - retail-backend
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3002/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "${FRONTEND_PORT:-8088}:80"
+    depends_on:
+      catalog-service:
+        condition: service_healthy
+      order-service:
+        condition: service_healthy
+    networks:
+      - retail-backend
+    restart: unless-stopped
+
+networks:
+  retail-backend:
+    driver: bridge
+
+volumes:
+  retail-postgres-data:

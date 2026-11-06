@@ -1,0 +1,15 @@
+{
+  "name": "retail-order-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Order management API for the Retail Order Management Platform",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "pg": "^8.13.1"
+  }
+}
