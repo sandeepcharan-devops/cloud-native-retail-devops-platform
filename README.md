@@ -111,17 +111,25 @@ Supporting infrastructure will include PostgreSQL, Redis and RabbitMQ.
 
 ```text
 cloud-native-retail-devops-platform/
-├── README.md
-├── architecture/
-├── screenshots/
-├── infrastructure/
-│   └── terraform/
+│
 ├── application/
+│   ├── frontend/
+│   ├── services/
+│   │   ├── catalog-service/
+│   │   ├── order-service/
+│   │   ├── inventory-service/
+│   │   ├── payment-service/
+│   │   └── notification-service/
+│   │
+│   └── database/
+│
 ├── jenkins/
 ├── kubernetes/
 ├── argocd/
 ├── monitoring/
-└── documentation/
+├── infrastructure/
+├── screenshots/
+└── README.md
 ```
 
 ## 7. Learning Objectives
