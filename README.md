@@ -22,6 +22,17 @@ The project is being implemented on AWS EC2 using a five-instance infrastructure
 
 All five instances are deployed within the same AWS VPC, across different subnets and Availability Zones, using separate security groups according to their responsibilities.
 
+EC2 Instances :
+![AWS EC2 Infrastructure](screenshots/01-aws-infrastructure/instances.png)
+
+VPC architecture:
+![AWS VPC](screenshots/01-aws-infrastructure/VPC.png)
+
+Security Groups:
+![AWS Security_Groups](screenshots/01-aws-infrastructure/Security_Groups.png)
+
+
+
 ## 3. Technology Stack
 
 | Category | Technologies |
